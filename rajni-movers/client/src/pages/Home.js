@@ -10,6 +10,7 @@ import {
   Package
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -19,13 +20,13 @@ const Home = () => {
       icon: <HomeIcon size={32} />,
       title: 'Home Shifting',
       desc: 'Stress-free moving for families and individuals with complete care.',
-      bg: 'bg-primary'
+      bg: 'bg-info'
     },
     {
       icon: <Building2 size={32} />,
       title: 'Office Relocation',
       desc: 'Quick business transitions with minimal downtime and disruption.',
-      bg: 'bg-danger'
+      bg: 'bg-warning'
     },
     {
       icon: <Package size={32} />,
@@ -37,7 +38,7 @@ const Home = () => {
       icon: <TruckIcon size={32} />,
       title: 'Vehicle Transport',
       desc: 'Secure transportation for your car or bike with full insurance.',
-      bg: 'bg-warning'
+      bg: 'bg-secondary'
     }
   ];
 
@@ -51,29 +52,26 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-light py-5 text-center">
+      <section className="hero-section text-center text-white" style={{ backgroundColor: '#17a2b8' }}>
         <div className="container py-5">
-          <div className="mb-3 d-inline-flex align-items-center px-3 py-2 bg-primary text-white rounded-pill">
+          <div className="mb-3 d-inline-flex align-items-center px-3 py-2 bg-white text-info rounded-pill fw-semibold">
             <TruckIcon size={16} className="me-2" />
             India's Trusted Moving Partner
           </div>
-          <h1 className="display-4 fw-bold">
-            Welcome to{' '}
-            <span className="text-gradient bg-gradient fw-bold">SwiftMove</span>
-          </h1>
-          <p className="lead text-secondary mt-3">
+          <h1 className="display-4 fw-bold">Welcome to <span className="text-white">SwiftMove</span></h1>
+          <p className="lead mt-3">
             Making relocations effortless — from your doorstep to your new beginnings
           </p>
-          <p className="text-muted mb-4">
+          <p className="mb-4">
             We specialize in home shifting, office moves, vehicle transport & storage services across India
           </p>
           <div className="d-flex flex-column flex-sm-row justify-content-center gap-3">
-            <button className="btn btn-primary d-flex align-items-center justify-content-center px-4 py-2">
+            <button className="btn btn-info d-flex align-items-center justify-content-center px-4 py-2 fw-semibold">
               Get Free Quote
               <ArrowRight className="ms-2" size={18} />
             </button>
             <button
-              className="btn btn-outline-secondary px-4 py-2"
+              className="btn btn-outline-light px-4 py-2 fw-semibold"
               onClick={() => navigate('/services')}
             >
               View Services
@@ -118,7 +116,7 @@ const Home = () => {
             {features.map((feature, idx) => (
               <div key={idx} className="col-md-6 mb-4">
                 <div className="d-flex align-items-start p-3 bg-white shadow-sm rounded">
-                  <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style={{ width: '48px', height: '48px' }}>
+                  <div className="bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" style={{ width: '48px', height: '48px' }}>
                     {feature.icon}
                   </div>
                   <div>
@@ -132,7 +130,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-5 bg-primary text-white text-center">
+      <section className="py-5 text-white text-center" style={{ backgroundColor: '#17a2b8' }}>
         <div className="container">
           <h2 className="display-5 fw-bold mb-3">Ready to Move?</h2>
           <p className="fs-5 mb-4">
@@ -140,7 +138,7 @@ const Home = () => {
           </p>
           <div className="d-flex flex-column flex-sm-row justify-content-center gap-3">
             <button
-              className="btn btn-light text-primary px-4 py-2 fw-semibold"
+              className="btn btn-light text-info px-4 py-2 fw-semibold"
               onClick={() => navigate('/contact')}
             >
               Contact Us Now

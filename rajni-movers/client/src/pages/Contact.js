@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Spinner from 'react-bootstrap/Spinner';
-import './Contact.css'; // link to new CSS file
+import './Contact.css'; // Make sure the CSS below is linked
 
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
@@ -49,6 +49,7 @@ function Contact() {
               value={form.name}
               onChange={handleChange}
               placeholder="Your Name"
+              className="form-control"
               required
             />
           </div>
@@ -61,6 +62,7 @@ function Contact() {
               value={form.email}
               onChange={handleChange}
               placeholder="Your Email (optional)"
+              className="form-control"
             />
           </div>
 
@@ -72,6 +74,7 @@ function Contact() {
               value={form.phone}
               onChange={handleChange}
               placeholder="Your Phone (optional)"
+              className="form-control"
             />
           </div>
 
@@ -83,12 +86,13 @@ function Contact() {
               value={form.message}
               onChange={handleChange}
               placeholder="Type your message here"
+              className="form-control"
               required
             />
           </div>
 
           <div className="text-center">
-            <button className="glass-button" type="submit" disabled={loading}>
+            <button className="btn glass-button mt-3" type="submit" disabled={loading}>
               {loading ? (
                 <>
                   <Spinner animation="border" size="sm" role="status" className="me-2" />

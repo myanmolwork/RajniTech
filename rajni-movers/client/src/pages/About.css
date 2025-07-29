@@ -1,24 +1,67 @@
+/* Glassmorphism card style */
 .glass-card {
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
-  color: #212529;
+  background: rgba(245, 158, 11, 0.15); /* soft amber tint */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(245, 158, 11, 0.3); /* amber border */
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.25);
+  color: #1a1a1a; /* dark text for readability */
+  border-radius: 16px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+.glass-card:hover {
+  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5);
+  transform: translateY(-5px);
+}
+
+/* Text with subtle amber glow */
 .text-outline {
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
+  text-shadow: 1px 1px 4px rgba(245, 158, 11, 0.6);
 }
 
 .text-outline-sm {
-  text-shadow: 0.5px 0.5px 2px rgba(255, 255, 255, 0.4);
+  text-shadow: 0.5px 0.5px 3px rgba(245, 158, 11, 0.4);
 }
 
+/* Darker text emphasis */
 .text-dark-emphasis {
   color: #1a1a1a !important;
 }
 
+/* Muted secondary text in charcoal shade */
 .text-secondary-emphasis {
-  color: #2f3e46;
+  color: #3a3f48;
+}
+
+/* Replace old bootstrap primary color with custom amber */
+.text-primary, .bg-primary {
+  color: #f59e0b !important;
+  background-color: #f59e0b !important;
+  border-color: #f59e0b !important;
+}
+
+/* Links and buttons hover effect */
+a.text-primary:hover, 
+.btn-primary:hover {
+  color: #d97706 !important;
+  background-color: #d97706 !important;
+  border-color: #d97706 !important;
+}
+
+/* For background light sections */
+.bg-light {
+  background-color: #fff8e1 !important; /* very light amber */
+}
+
+/* For background dark sections */
+.bg-dark {
+  background-color: #1f2937 !important; /* deep charcoal */
+  color: #fff !important;
+}
+
+/* Override any bootstrap text-muted with darker amber */
+.text-muted {
+  color: #a8710a !important;
 }

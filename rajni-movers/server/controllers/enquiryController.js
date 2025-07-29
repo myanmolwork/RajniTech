@@ -1,6 +1,5 @@
 const Enquiry = require('../models/Enquiry');
 
-// Submit Enquiry (Public)
 exports.submitEnquiry = async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;
@@ -11,7 +10,7 @@ exports.submitEnquiry = async (req, res) => {
   }
 };
 
-// Get All Enquiries (Admin Only)
+
 exports.getEnquiries = async (req, res) => {
   try {
     const enquiries = await Enquiry.find().sort({ createdAt: -1 });
@@ -21,7 +20,7 @@ exports.getEnquiries = async (req, res) => {
   }
 };
 
-// ✅ Delete Enquiry (Admin Only)
+
 exports.deleteEnquiry = async (req, res) => {
   try {
     const deleted = await Enquiry.findByIdAndDelete(req.params.id);

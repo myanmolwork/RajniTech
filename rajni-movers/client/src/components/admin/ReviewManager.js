@@ -7,7 +7,7 @@ function ReviewManager({ token }) {
     name: '',
     comment: '',
     rating: 5,
-    serviceType: 'Home Shifting', // Updated default to match backend enum
+    serviceType: 'Home Shifting', 
   });
 
   const fetchReviews = async () => {

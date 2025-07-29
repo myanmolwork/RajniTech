@@ -7,7 +7,6 @@
   color: #212529;
 }
 
-/* Optional: Add gentle text outlines to improve visibility */
 .text-outline {
   text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
 }

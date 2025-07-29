@@ -1,11 +1,10 @@
 const Review = require('../models/Review');
 
-// Add Review (Public)
 exports.addReview = async (req, res) => {
   try {
     const { name, rating, comment, serviceType } = req.body;
 
-    // Validate required fields
+
     if (!name || !rating || !comment || !serviceType) {
       return res.status(400).json({ message: 'All fields (name, rating, comment, serviceType) are required' });
     }
@@ -17,7 +16,6 @@ exports.addReview = async (req, res) => {
   }
 };
 
-// Get All Reviews (Public)
 exports.getReviews = async (req, res) => {
   try {
     const reviews = await Review.find().sort({ createdAt: -1 });
@@ -27,7 +25,7 @@ exports.getReviews = async (req, res) => {
   }
 };
 
-// Delete Review (Admin Only)
+
 exports.deleteReview = async (req, res) => {
   try {
     await Review.findByIdAndDelete(req.params.id);

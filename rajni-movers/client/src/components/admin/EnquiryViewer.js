@@ -35,22 +35,34 @@ function EnquiryManager({ token }) {
   };
 
   return (
-    <div>
-      <h3>📩 Manage Enquiries</h3>
+    <div className="container my-4">
+      <h3 className="mb-4">📩 Manage Enquiries</h3>
+
       {enquiries.length === 0 ? (
-        <p>No enquiries found.</p>
+        <div className="alert alert-info">No enquiries found.</div>
       ) : (
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
+        <div className="row">
           {enquiries.map((e) => (
-            <li key={e._id} style={{ marginBottom: '15px', border: '1px solid #ccc', padding: '10px' }}>
-              <p><strong>Name:</strong> {e.name}</p>
-              <p><strong>Phone:</strong> {e.phone}</p>
-              <p><strong>Email:</strong> {e.email}</p>
-              <p><strong>Message:</strong> {e.message}</p>
-              <button onClick={() => handleDelete(e._id)}>🗑️ Delete</button>
-            </li>
+            <div key={e._id} className="col-md-6 col-lg-4 mb-4">
+              <div className="card shadow-sm h-100">
+                <div className="card-body">
+                  <h5 className="card-title">{e.name}</h5>
+                  <p className="card-text">
+                    <strong>Phone:</strong> {e.phone} <br />
+                    <strong>Email:</strong> {e.email} <br />
+                    <strong>Message:</strong> {e.message}
+                  </p>
+                  <button
+                    onClick={() => handleDelete(e._id)}
+                    className="btn btn-sm btn-danger"
+                  >
+                    🗑️ Delete
+                  </button>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

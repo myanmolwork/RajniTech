@@ -3,11 +3,13 @@ import axios from 'axios';
 import BlogManager from '../components/admin/BlogManager';
 import ReviewManager from '../components/admin/ReviewManager';
 import EnquiryViewer from '../components/admin/EnquiryViewer';
+import '../components/AdminDashboard.css';
 
 function Admin() {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [token, setToken] = useState(localStorage.getItem('adminToken'));
-  const [view, setView] = useState('login'); // login | dashboard
+  const [view, setView] = useState(token ? 'dashboard' : 'login');
+  const [activeTab, setActiveTab] = useState('blogs');
 
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -21,38 +23,82 @@ function Admin() {
       setToken(res.data.token);
       setView('dashboard');
     } catch (err) {
-      alert('Invalid login');
+      alert('❌ Invalid login credentials. Please try again.');
     }
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('adminToken');
-    setToken('');
-    setView('login');
+    if (window.confirm('Are you sure you want to logout?')) {
+      localStorage.removeItem('adminToken');
+      setToken('');
+      setView('login');
+    }
   };
 
-  if (!token || view === 'login') {
+  if (view === 'login') {
     return (
-      <div className="admin-login">
-        <h2>Admin Login</h2>
-        <form onSubmit={handleLogin}>
-          <input name="email" value={loginData.email} onChange={handleChange} placeholder="Email" required />
-          <input name="password" value={loginData.password} onChange={handleChange} placeholder="Password" type="password" required />
-          <button type="submit">Login</button>
-        </form>
+      <div className="admin-dashboard-container">
+        <div className="admin-login glass-card">
+          <h2>🔐 Admin Login</h2>
+          <form onSubmit={handleLogin} className="login-form">
+            <input
+              name="email"
+              value={loginData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+            <input
+              name="password"
+              type="password"
+              value={loginData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+            <button type="submit" className="btn-glass primary">🚀 Login</button>
+          </form>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="admin-dashboard">
-      <h2>Welcome Admin 👑</h2>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="admin-dashboard-container">
+      <div className="admin-dashboard glass-card">
+        <h2>👑 Welcome Admin</h2>
+        <div className="admin-top-bar">
+          <div className="admin-tabs">
+            <button
+              className={`btn-glass ${activeTab === 'blogs' ? 'active' : ''}`}
+              onClick={() => setActiveTab('blogs')}
+            >
+              📝 Blogs
+            </button>
+            <button
+              className={`btn-glass ${activeTab === 'reviews' ? 'active' : ''}`}
+              onClick={() => setActiveTab('reviews')}
+            >
+              ⭐ Reviews
+            </button>
+            <button
+              className={`btn-glass ${activeTab === 'enquiries' ? 'active' : ''}`}
+              onClick={() => setActiveTab('enquiries')}
+            >
+              📩 Enquiries
+            </button>
+          </div>
+          <button onClick={handleLogout} className="btn-glass danger">Logout</button>
+        </div>
 
-      {/* Tabs for blog/reviews/enquiry */}
-      <BlogManager token={token} />
-      <ReviewManager token={token} />
-      <EnquiryViewer token={token} />
+        <hr />
+
+        <div className="admin-content">
+          {activeTab === 'blogs' && <BlogManager token={token} />}
+          {activeTab === 'reviews' && <ReviewManager token={token} />}
+          {activeTab === 'enquiries' && <EnquiryViewer token={token} />}
+        </div>
+      </div>
     </div>
   );
 }

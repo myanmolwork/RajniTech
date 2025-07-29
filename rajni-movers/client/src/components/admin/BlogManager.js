@@ -63,6 +63,7 @@ function BlogManager({ token }) {
   const handleEdit = (blog) => {
     setForm({ title: blog.title, content: blog.content, image: blog.image || '' });
     setEditId(blog._id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancelEdit = () => {
@@ -71,30 +72,76 @@ function BlogManager({ token }) {
   };
 
   return (
-    <div>
-      <h3>📝 {editId ? 'Edit Blog' : 'Add New Blog'}</h3>
-      <input name="title" value={form.title} onChange={handleChange} placeholder="Title" />
-      <input name="image" value={form.image} onChange={handleChange} placeholder="Image URL (optional)" />
-      <textarea name="content" value={form.content} onChange={handleChange} placeholder="Content" />
-      
-      {editId ? (
-        <>
-          <button onClick={handleUpdate}>Update Blog</button>
-          <button onClick={handleCancelEdit}>Cancel</button>
-        </>
-      ) : (
-        <button onClick={handleCreate}>Add Blog</button>
-      )}
+    <div className="container mt-4">
+      <div className="card p-4 shadow-sm border-0 rounded-4">
+        <h3 className="mb-3">{editId ? '✏️ Edit Blog' : '📝 Add New Blog'}</h3>
 
-      <ul style={{ marginTop: '20px' }}>
-        {blogs.map((b) => (
-          <li key={b._id} style={{ marginBottom: '10px' }}>
-            <strong>{b.title}</strong> &nbsp;
-            <button onClick={() => handleEdit(b)}>✏️ Edit</button>
-            <button onClick={() => handleDelete(b._id)}>🗑️ Delete</button>
-          </li>
-        ))}
-      </ul>
+        <div className="mb-3">
+          <label className="form-label">Title</label>
+          <input
+            name="title"
+            className="form-control"
+            value={form.title}
+            onChange={handleChange}
+            placeholder="Enter blog title"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Image URL</label>
+          <input
+            name="image"
+            className="form-control"
+            value={form.image}
+            onChange={handleChange}
+            placeholder="Enter image URL (optional)"
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Content</label>
+          <textarea
+            name="content"
+            className="form-control"
+            value={form.content}
+            onChange={handleChange}
+            placeholder="Write your blog content..."
+            rows="5"
+          />
+        </div>
+
+        {editId ? (
+          <div className="d-flex gap-2">
+            <button className="btn btn-success" onClick={handleUpdate}>✅ Update</button>
+            <button className="btn btn-outline-secondary" onClick={handleCancelEdit}>❌ Cancel</button>
+          </div>
+        ) : (
+          <button className="btn btn-primary" onClick={handleCreate}>➕ Add Blog</button>
+        )}
+      </div>
+
+      <div className="mt-5">
+        <h4 className="mb-3">📃 All Blogs</h4>
+        {blogs.length === 0 ? (
+          <p className="text-muted">No blogs available.</p>
+        ) : (
+          <ul className="list-group">
+            {blogs.map((b) => (
+              <li key={b._id} className="list-group-item d-flex justify-content-between align-items-start flex-wrap">
+                <div>
+                  <strong>{b.title}</strong>
+                  <br />
+                  <small className="text-muted">{new Date(b.createdAt).toLocaleDateString()}</small>
+                </div>
+                <div className="btn-group btn-group-sm mt-2 mt-md-0" role="group">
+                  <button className="btn btn-outline-primary" onClick={() => handleEdit(b)}>Edit</button>
+                  <button className="btn btn-outline-danger" onClick={() => handleDelete(b._id)}>Delete</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

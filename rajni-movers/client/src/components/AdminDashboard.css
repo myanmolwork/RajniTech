@@ -1,0 +1,76 @@
+/* AdminDashboard.css */
+
+.admin-dashboard {
+  background: rgba(25, 25, 50, 0.8);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 90%;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(18px);
+}
+
+.admin-login {
+  background: rgba(30, 30, 60, 0.8);
+  color: #ffffff;
+  padding: 2rem;
+  max-width: 400px;
+  margin: 6vh auto;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.glass-card input::placeholder {
+  color: #ccc;
+}
+
+.btn-glass {
+  background: linear-gradient(135deg, #6f00ff, #c500cc);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: transform 0.2s ease;
+}
+
+.btn-glass:hover {
+  transform: scale(1.05);
+}
+
+.btn-glass.active {
+  background: linear-gradient(135deg, #ff007a, #ff4d4d);
+}
+
+.btn-glass.danger {
+  background: #ff3c3c;
+}
+
+.admin-top-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-content {
+  margin-top: 2rem;
+}

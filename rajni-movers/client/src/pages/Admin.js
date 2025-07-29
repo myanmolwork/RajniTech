@@ -37,9 +37,9 @@ function Admin() {
 
   if (view === 'login') {
     return (
-      <div className="admin-dashboard-container">
-        <div className="admin-login glass-card">
-          <h2>🔐 Admin Login</h2>
+      <div className="admin-dashboard-container gradient-bg">
+        <div className="admin-login glass-card login-box">
+          <h2 className="admin-title gradient-text">🔐 Admin Login</h2>
           <form onSubmit={handleLogin} className="login-form">
             <input
               name="email"
@@ -47,6 +47,7 @@ function Admin() {
               onChange={handleChange}
               placeholder="Email"
               required
+              className="input-glass"
             />
             <input
               name="password"
@@ -55,8 +56,9 @@ function Admin() {
               onChange={handleChange}
               placeholder="Password"
               required
+              className="input-glass"
             />
-            <button type="submit" className="btn-glass primary">🚀 Login</button>
+            <button type="submit" className="btn-glass primary glow-btn">🚀 Login</button>
           </form>
         </div>
       </div>
@@ -64,34 +66,34 @@ function Admin() {
   }
 
   return (
-    <div className="admin-dashboard-container">
-      <div className="admin-dashboard glass-card">
-        <h2>👑 Welcome Admin</h2>
+    <div className="admin-dashboard-container gradient-bg">
+      <div className="admin-dashboard glass-card dashboard-box">
+        <h2 className="admin-title gradient-text">👑 Welcome Admin</h2>
         <div className="admin-top-bar">
           <div className="admin-tabs">
             <button
-              className={`btn-glass ${activeTab === 'blogs' ? 'active' : ''}`}
+              className={`btn-glass tab-btn ${activeTab === 'blogs' ? 'active-tab' : ''}`}
               onClick={() => setActiveTab('blogs')}
             >
               📝 Blogs
             </button>
             <button
-              className={`btn-glass ${activeTab === 'reviews' ? 'active' : ''}`}
+              className={`btn-glass tab-btn ${activeTab === 'reviews' ? 'active-tab' : ''}`}
               onClick={() => setActiveTab('reviews')}
             >
               ⭐ Reviews
             </button>
             <button
-              className={`btn-glass ${activeTab === 'enquiries' ? 'active' : ''}`}
+              className={`btn-glass tab-btn ${activeTab === 'enquiries' ? 'active-tab' : ''}`}
               onClick={() => setActiveTab('enquiries')}
             >
               📩 Enquiries
             </button>
           </div>
-          <button onClick={handleLogout} className="btn-glass danger">Logout</button>
+          <button onClick={handleLogout} className="btn-glass danger logout-btn glow-btn">🚪 Logout</button>
         </div>
 
-        <hr />
+        <hr className="divider-glass" />
 
         <div className="admin-content">
           {activeTab === 'blogs' && <BlogManager token={token} />}

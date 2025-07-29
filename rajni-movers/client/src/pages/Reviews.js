@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReviewCard from '../components/ReviewCard';
 import { Spinner, Container, Row, Col, Alert } from 'react-bootstrap';
+import './Reviews.css';
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -23,35 +24,37 @@ function Reviews() {
   }, []);
 
   return (
-    <Container className="py-4">
-      <h2 className="text-center mb-4">Customer Reviews</h2>
+    <div className="reviews-page">
+      <div className="glass-card reviews-container">
+        <h2 className="text-center mb-4">🌟 Customer Reviews</h2>
 
-      {loading && (
-        <div className="text-center my-5">
-          <Spinner animation="border" variant="primary" />
-        </div>
-      )}
+        {loading && (
+          <div className="text-center my-5">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
 
-      {error && (
-        <Alert variant="danger" className="text-center">
-          {error}
-        </Alert>
-      )}
+        {error && (
+          <Alert variant="danger" className="text-center">
+            {error}
+          </Alert>
+        )}
 
-      {!loading && !error && reviews.length === 0 && (
-        <Alert variant="info" className="text-center">
-          No reviews yet. Be the first to leave a review!
-        </Alert>
-      )}
+        {!loading && !error && reviews.length === 0 && (
+          <Alert variant="info" className="text-center">
+            No reviews yet. Be the first to leave a review!
+          </Alert>
+        )}
 
-      <Row>
-        {reviews.map((review) => (
-          <Col key={review._id} xs={12} md={6} lg={4} className="mb-4">
-            <ReviewCard {...review} />
-          </Col>
-        ))}
-      </Row>
-    </Container>
+        <Row>
+          {reviews.map((review) => (
+            <Col key={review._id} xs={12} md={6} lg={4} className="mb-4">
+              <ReviewCard {...review} />
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </div>
   );
 }
 

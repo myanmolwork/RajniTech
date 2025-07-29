@@ -1,20 +1,19 @@
 import React from 'react';
+import './ReviewCard.css';
 
 const ReviewCard = ({ name, rating, comment, createdAt, serviceType }) => {
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 shadow-md border border-white/20 transition hover:scale-[1.02] duration-300">
-      <div className="flex justify-between items-center mb-2">
-        <h4 className="text-lg font-semibold">{name}</h4>
-        <span className="text-yellow-400 font-bold">⭐ {rating}/5</span>
+    <div className="review-glass-card">
+      <div className="review-header">
+        <h4 className="review-name">{name}</h4>
+        <span className="review-rating">⭐ {rating}/5</span>
       </div>
 
-      <p className="text-sm mb-3 italic">"{comment}"</p>
+      <p className="review-comment">"{comment}"</p>
 
-      <div className="flex justify-between items-center text-xs text-gray-300">
-        <span className="bg-blue-600/30 px-2 py-1 rounded-md font-medium">
-          {serviceType}
-        </span>
-        <span>{new Date(createdAt).toLocaleDateString()}</span>
+      <div className="review-footer">
+        <span className="review-service">{serviceType}</span>
+        <span className="review-date">{new Date(createdAt).toLocaleDateString()}</span>
       </div>
     </div>
   );

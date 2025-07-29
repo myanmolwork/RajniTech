@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import Reviews from "./pages/Reviews";
 import Admin from "./pages/Admin";
 
+
 // Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";

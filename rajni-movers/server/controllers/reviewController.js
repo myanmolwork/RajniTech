@@ -3,8 +3,14 @@ const Review = require('../models/Review');
 // Add Review (Public)
 exports.addReview = async (req, res) => {
   try {
-    const { name, rating, comment } = req.body;
-    const newReview = await Review.create({ name, rating, comment });
+    const { name, rating, comment, serviceType } = req.body;
+
+    // Validate required fields
+    if (!name || !rating || !comment || !serviceType) {
+      return res.status(400).json({ message: 'All fields (name, rating, comment, serviceType) are required' });
+    }
+
+    const newReview = await Review.create({ name, rating, comment, serviceType });
     res.status(201).json(newReview);
   } catch (error) {
     res.status(500).json({ message: 'Error adding review' });
